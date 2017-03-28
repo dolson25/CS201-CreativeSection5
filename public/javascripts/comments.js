@@ -1,20 +1,37 @@
 $(document).ready(function(){
-  $("#postComment").click(function(){
-      var myobj = {Name:$("#name").val(),Comment:$("#comment").val()};
+  $("#iceCreamSubmit").click(function(){
+      var myobj = {flavor:$('input[name="flavors"]:checked').val();};
       jobj = JSON.stringify(myobj);
       $("#json").text(jobj);
-	var url = "comment";
+	var url = "icecream";
 	$.ajax({
 		url:url,
 		type: "POST",
 		data: jobj,
 		contentType: "application/json; charset=utf-8",
 		success: function(data,textStatus) {
-		    $("#done").html(textStatus);
+		    console.log("success");
 		}
 	})
   });
 
+  $("#sportSubmit").click(function(){
+	var myobj = {sport:$('input[name="sports"]:checked').val();};
+	jobj = JSON.stringify(myobj);
+	$("#json").text(jobj);
+		var url = "sports";
+		$.ajax({
+			url:url,
+			type: "POST"
+			data: jobj,
+			contentType: "application/json; charset=utf-8",
+			success: function(data, textStatus) {
+				console.log("success");
+			{
+		})
+	})
+  });
+/*
     $("#getComments").click(function() {
     $.getJSON('comment', function(data) {
       console.log(data);
@@ -27,13 +44,5 @@ $(document).ready(function(){
       $("#comments").html(everything);
     })
   })
-
-  $("#deleteComments").click(function() {
-	$.getJSON('delete',function(data) {
-		console.log("hi");
-		$("#comments").html("");
-	});
-  });
-
-
+*/
 });

@@ -4,7 +4,7 @@ var router = express.Router();
 /* Set up mongoose in order to connect to mongo database */
 var mongoose = require('mongoose'); //Adds mongoose as a usable dependency
 
-mongoose.connect('mongodb://localhost/commentDB'); //Connects to a mongo database called "commentDB"
+mongoose.connect('mongodb://localhost/commentDB22'); //Connects to a mongo database called "commentDB"
 
 var commentSchema = mongoose.Schema({ //Defines the Schema for this database
 Name: String,
@@ -24,17 +24,30 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/comment', function(req, res, next) {
-console.log("POST comment route"); //[1]
-console.log(req.body);
+router.post('/flavors', function(req, res, next) {
+	console.log("POST flavor route"); //[1]
+	console.log(req.body);
 
-var newcomment = new Comment(req.body); //[3]
-console.log(newcomment); //[3]
-newcomment.save(function(err, post) { //[4]
-  if (err) return console.error(err);
-  console.log(post);
-  res.sendStatus(200);
+	//new flavar
+	var newcomment = new Comment(req.body); //[3]
+	//console.log(newcomment); //[3]
+	
+	//save flavor
+	newcomment.save(function(err, post) { //[4]
+ 		 if (err) return console.error(err);
+  		console.log(post);
+  	res.sendStatus(200);
+	});
 });
+
+router.post('/sports', function(req, res, next) {
+	console.log("POST sports route");
+	console.log(req.body);
+
+	//new sport
+	//put in db
+
+	res.sendStatus(200);
 });
 
 
