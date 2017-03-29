@@ -12,7 +12,7 @@
     <div class="question" id="q1">
         <h2>Question #1:</h2>
         <h3>What is your favorite flavor of ice cream?</h3>
-        <form action="" name="flavors">
+        <form action="">
             <ul>
                 <li><input type="radio" name="iceCream" value="chocolate">Chocolate</li>
                 <li><input type="radio" name="iceCream" value="vanilla">Vanilla</li>
@@ -28,7 +28,7 @@
     <div class="question" id="q2">
         <h2>Question #2:</h2>
         <h3>What is your favorite sport?</h3>
-        <form action="" name="sports">
+        <form action="">
             <ul>
                 <li><input type="radio" name="sport" value="basketball">Basketball</li>
                 <li><input type="radio" name="sport" value="volleyball">Volleyball</li>
@@ -41,7 +41,41 @@
         </form>
     </div>
     
+    <div class="question" id="q3">
+        <h2>Question #3:</h2>
+        <h3>How many siblings do you have?</h3>
+        <form action="">
+            <ul>
+                <li>Number:<input type="number" name="siblings" value="0" style="padding-left: 5px; margin-left: 5px;" min="0"></li>
+            </ul>
+        <br>
+            <button type="button" id="siblingSubmit">Submit Answer</button>
+        </form>
+    </div>
+    
+    <div class="question" id="q4">
+        <h2>Question #4:</h2>
+        <h3>What score would you give yourself (1-10) on your web programming skills?</h3>
+        <form action="">
+            <ul>
+                <li><input type="range" min="0" max="10" value="3" step="1" id="webSlider" oninput="outputUpdate(value)"><output for="webSlider" id="sliderValue" style="margin-left: 20px; text-decoration: underline; padding: 10px; border: 1px solid white; font-size: 2em;">3</output></li>
+            </ul>
+        <br>
+            <button type="button" id="skillsSubmit">Submit Answer</button>
+        </form>
+    </div>
+    
+    <div class="question" id="q5">
+        <h2>Question #5:</h2>
+        <h3>What comments would you like to leave about this site?<br>(keep in mind these comments will be publicly viewed)</h3>
+        <form action="">
+            <ul>
+                <li><input type="text" value="Comments Here"></li>
+            </ul>
+        <br>
+            <button type="button" id="commentSubmit">Submit Answer</button>
+        </form>
+    </div>
+    
 </body>
 </html>
-
-
