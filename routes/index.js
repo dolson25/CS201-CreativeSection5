@@ -50,6 +50,33 @@ router.post('/sports', function(req, res, next) {
 	res.sendStatus(200);
 });
 
+router.post('/siblings', function(req, res, next) {
+	console.log("POST siblings route");
+	console.log(req.body);
+
+	//new sibling or just add
+	//put in db
+	
+	res.sendStatus(200);
+});
+
+router.post('/skills', function(req, res, next) {
+	console.log("POST skills route");
+	console.log(req.body);
+
+	//db stuff
+
+	res.sendStatus(200)
+});
+
+router.post('/comments', function(req, res, next) {
+	console.log("POST comments route");
+	console.log(req.body);
+
+	//db stuff
+
+	res.sendStatus(200);
+});
 
 /* GET comments from database */
 router.get('/comment', function(req, res, next) {
