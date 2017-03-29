@@ -31,7 +31,7 @@ ul {
     width: 50%;
     margin-left: 25%;
 }
-#q2, #q3, #q4, #q5 {
+#q2, #q3, #q4, #q5, #results {
     display: none;
 }
 input[type=text] {
@@ -39,3 +39,47 @@ input[type=text] {
     overflow: visible;
     height: auto;
 }
+#results {
+    width: 100%;
+    height: 100%;
+}
+.container {
+    width: 70%;
+    height: auto;
+    margin: auto;
+    margin-bottom: 50px;
+    border: 2px solid black;
+    border-radius: 20px;
+    overflow: hidden
+}
+.containerHeader {
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    font-size: 2em;
+    font-weight: bold;
+}
+.containerContent {
+    height: inherit;
+    color: black;
+    text-align: center;
+    padding: 15px;
+}
+#iceCreamResults.containerHeader {
+    background-color: #58FF00;
+}
+#sportsResults.containerHeader {
+    background-color: #2FD9C3;
+}
+#siblingsResults.containerHeader {
+    background-color: #1621FF;
+}
+#skillsResults.containerHeader {
+    background-color: #E882DD;
+}
+#commentsResults.containerHeader {
+    background-color: #FF5B09;
+}
+
+

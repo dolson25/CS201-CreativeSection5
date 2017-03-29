@@ -107,6 +107,8 @@ $(document).ready(function() {
 	$("#q5").hide("slow", function() {
            $("body").css("background-color","white");
             $("h1").text("Here are the Results:");
+	    $("h1").css("text-decoration","underline");
+	    $("#results").fadeIn();
         });
     });
     
