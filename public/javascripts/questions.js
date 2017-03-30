@@ -132,7 +132,7 @@ function getResults(){
         console.log(data[5]);
 	var totalVotes = data[5]["VoteCount"];
 	flavors.forEach(function (f, i) {
-        	$("#" + f + "LI").html(f + "  " + 100 * data[i]["VoteCount"] / totalVotes + " %");
+        	$("#" + f + "LI").html(f + "  " + Math.round(100 * data[i]["VoteCount"] / totalVotes) + " %");
         }); 
    });
     
@@ -140,8 +140,12 @@ function getResults(){
         console.log(data[5]);
         var totalVotes = data[5]["VoteCount"];
         sports.forEach(function (s,i) {
-            $("#" + s + "LI").html(s + "  " + 100 * data[i]["VoteCount"] / totalVotes + " %");
+            $("#" + s + "LI").html(s + "  " + Math.round(100 * data[i]["VoteCount"] / totalVotes) + " %");
         });
+    });
+    $.getJSON('siblings', function(data) {
+	console.log(data);
+	var totalVotes = data["VoteCount"];
     });
 }
 
