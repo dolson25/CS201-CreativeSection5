@@ -31,7 +31,7 @@ ul {
     width: 50%;
     margin-left: 25%;
 }
-#q2, #q3, #q4, #q5, #results {
+#q2, #q3, #q4, #results {
     display: none;
 }
 input[type=text] {
@@ -78,8 +78,3 @@ input[type=text] {
 #skillsResults.containerHeader {
     background-color: #E882DD;
 }
-#commentsResults.containerHeader {
-    background-color: #FF5B09;
-}
-
-

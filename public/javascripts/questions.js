@@ -84,10 +84,13 @@ $(document).ready(function() {
 	})
 	
 	$("#q4").hide("slow", function() {
-            $("#q5").fadeIn();
+	    $("body").css("background-color","#FFF");
+	    $("h1").text("Here are the results:");
+	    $("h1").css("text-decoration","underline");
+            $("#results").fadeIn();
         });
     });
-    $("#commentSubmit").click(function() {
+/*    $("#commentSubmit").click(function() {
         
       var myobj = {comment:$('#comments').val()};
       jobj = JSON.stringify(myobj);
@@ -111,7 +114,7 @@ $(document).ready(function() {
 	    $("#results").fadeIn();
         });
     });
-    
+*/    
 });
 
 function outputUpdate(vol) {
