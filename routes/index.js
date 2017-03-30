@@ -48,7 +48,7 @@ var Sibling = mongoose.model('Sibling', siblingSchema);
 var Skill = mongoose.model('Skill', skillSchema);
 
 if(first){
-	var flavors = ["chocolate", "vanilla", "rockyRoad", "strawberry", "other"]
+	var flavors = ["chocolate", "vanilla", "rockyRoad", "strawberry", "other", "total"]
 	
 	for(f of flavors){
 		var newFlavor = new Flavor({Flavor:f,VoteCount:0});
@@ -59,7 +59,7 @@ if(first){
 		});
 	}
 
-	var sports = ["basketball", "volleyball", "soccer", "football", "other"]
+	var sports = ["basketball", "volleyball", "soccer", "football", "other", "total"]
 	
 	for(s of sports){
 		var newSport = new Sport({Sport:s,VoteCount:0});
@@ -99,6 +99,10 @@ router.post('/flavors', function(req, res, next) {
 	  if(err) return console.log(err);
 	});
 
+	Flavor.findOneAndUpdate({Flavor:"total"}, {$inc:{VoteCount:1}},function(err, result){
+	  if(err) return console.log(err)
+	});
+
 	Flavor.find(function(err, flavorList){
 	  if(err) return console.log(err);
 	  console.log(flavorList);
@@ -115,6 +119,11 @@ router.post('/sports', function(req, res, next) {
 	Sport.findOneAndUpdate({Sport:req.body["sport"]}, {$inc:{VoteCount:1}},function(err, result){
 	  if(err) return console.log(err);
 	});
+
+	Sport.findOneAndUpdate({Sport:"total"}, {$inc:{VoteCount:1}},function(err, result){
+	  if(err) return console.log(err)
+	});
+
 
 	Sport.find(function(err, sportList){
 	  if(err) return console.log(err);
@@ -143,36 +152,20 @@ router.post('/skills', function(req, res, next) {
 	res.sendStatus(200)
 });
 
-router.post('/comments', function(req, res, next) {
-	console.log("POST comments route");
-	console.log(req.body);
 
-	//db stuff
-
-	res.sendStatus(200);
-});
-
-/* GET comments from database */
-router.get('/comment', function(req, res, next) {
-console.log("In the GET route?");
-Comment.find(function(err,commentList) { //Calls the find() method on your database
-  if (err) return console.error(err); //If there's an error, print it out
-  else {
-    console.log(commentList); //Otherwise console log the comments you found
+/* GET results from database */
+router.get('/results', function(req, res, next) {
+	console.log("In the GET route?");
+	Flavor.find(function(err,flavorList) { //Calls the find() method on your database
+  		if (err) 
+			return console.error(err); //If there's an error, print it out
+  		else {
+    			console.log(flavorList); //Otherwise console log the comments you found
     
-   res.json(commentList); 
-  }
-})
+   			res.json(flavorList); 
+  		}
+	})
 });
 
-router.get('/delete', function(req, res, next) {
-console.log("In Delete");
-
-//delete commenets
-collection = db.collection('comments');
-collection.remove();
-
-res.json('{deleted:yup}');
-});
 
 module.exports = router;

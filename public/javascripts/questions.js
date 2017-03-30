@@ -1,3 +1,6 @@
+var flavors = ["chocolate", "vanilla", "rockyRoad", "strawberry", "other"]
+
+
 $(document).ready(function() {
     
    $('input[name=iceCream][value=other]').prop('checked', true);
@@ -80,6 +83,7 @@ $(document).ready(function() {
 		contentType: "application/json; charset=utf-8",
 		success: function(data,textStatus) {
 		    console.log("success");
+		    getResults();
 		}
 	})
 	
@@ -119,4 +123,18 @@ $(document).ready(function() {
 
 function outputUpdate(vol) {
         document.querySelector('#sliderValue').value = vol;
-    }
+}
+
+function getResults(){
+    console.log("in get results");
+
+    $.getJSON('results', function(data) {
+        console.log(data[5]);
+	var totalVotes = data[5]["VoteCount"];
+	flavors.forEach(function (f, i) {
+        	$("#" + f + "LI").html(f + "  " + 100 * data[i]["VoteCount"] / totalVotes + " %");
+        }); 
+   })
+}
+
+
