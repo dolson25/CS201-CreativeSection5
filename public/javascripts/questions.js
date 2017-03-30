@@ -44,7 +44,12 @@ $(document).ready(function() {
 	})
 
 	$("#q2").hide("slow", function() {
-            $("#q3").fadeIn();
+            $("#results").fadeIn();
+
+ $("body").css("background-color","white");
+            $("h1").text("Here are the Results:");
+            $("h1").css("text-decoration","underline");
+
         });
     });
     $("#siblingSubmit").click(function() {
