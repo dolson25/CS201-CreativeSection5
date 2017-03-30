@@ -137,8 +137,14 @@ router.post('/siblings', function(req, res, next) {
 	console.log("POST siblings route");
 	console.log(req.body);
 
-	//new sibling or just add
-	//put in db
+	Sibling.findOneAndUpdate({}, {$inc:{VoteCount:1}},function(err, result){
+	  if(err) return console.log(err)
+	});
+
+	Sibling.findOneAndUpdate({}, {$inc:{SiblingCount:req.body[siblings]1}},function(err, result){
+	  if(err) return console.log(err)
+	});
+
 	
 	res.sendStatus(200);
 });
