@@ -146,6 +146,7 @@ function getResults(){
     $.getJSON('siblings', function(data) {
 	console.log(data);
 	var totalVotes = data["VoteCount"];
+	$("#siblingsResultsContent").html(data["siblingTotal"] / data["VoteCount"] + " Siblings");
     });
 }
 
