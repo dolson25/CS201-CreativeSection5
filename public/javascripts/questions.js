@@ -1,5 +1,5 @@
-var flavors = ["chocolate", "vanilla", "rockyRoad", "strawberry", "other"]
-
+var flavors = ["chocolate", "vanilla", "rockyRoad", "strawberry", "other"];
+var sports = ["basketball", "volleyball", "soccer", "football", "other"];
 
 $(document).ready(function() {
     
@@ -134,7 +134,16 @@ function getResults(){
 	flavors.forEach(function (f, i) {
         	$("#" + f + "LI").html(f + "  " + 100 * data[i]["VoteCount"] / totalVotes + " %");
         }); 
-   })
+   });
+    
+    $.getJSON('sports', function(data) {
+        console.log(data[5]);
+        var totalVotes = data[5]["VoteCount"];
+        sports.forEach(function (s,i) {
+            $("#" + s + "LI").html(s + "  " + 100 * data[i]["VoteCount"] / totalVotes + " %");
+        });
+    });
 }
+
 
 

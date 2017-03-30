@@ -167,5 +167,31 @@ router.get('/flavors', function(req, res, next) {
     })
 });
 
+router.get('/sports', function(req, res, next) {
+    console.log("In the GET route for sports");
+    Sport.find(function(err, sportList) {
+        if (err) {
+            return console.error(err);
+        }
+        else {
+            console.log(sportList);
+            res.json(sportList);
+        }
+    });
+});
+
+router.get('/siblings', function(req, res, next) {
+	console.log("In the GET route for siblings");
+	Sibling.find(function(err, siblingNum) {
+	  if (err) {
+		return console.error(err);
+	  }
+	  else {
+		console.log(siblingNum);
+		res.json(siblingNum);
+	  }
+	});
+});
 
 module.exports = router;
+
