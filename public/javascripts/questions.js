@@ -128,7 +128,7 @@ function outputUpdate(vol) {
 function getResults(){
     console.log("in get results");
 
-    $.getJSON('results', function(data) {
+    $.getJSON('flavors', function(data) {
         console.log(data[5]);
 	var totalVotes = data[5]["VoteCount"];
 	flavors.forEach(function (f, i) {

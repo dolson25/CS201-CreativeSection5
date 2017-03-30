@@ -154,17 +154,17 @@ router.post('/skills', function(req, res, next) {
 
 
 /* GET results from database */
-router.get('/results', function(req, res, next) {
-	console.log("In the GET route?");
-	Flavor.find(function(err,flavorList) { //Calls the find() method on your database
-  		if (err) 
-			return console.error(err); //If there's an error, print it out
-  		else {
-    			console.log(flavorList); //Otherwise console log the comments you found
+router.get('/flavors', function(req, res, next) {
+    console.log("In the GET route?");
+    Flavor.find(function(err,flavorList) { //Calls the find() method on your database
+       if (err) 
+           return console.error(err); //If there's an error, print it out
+       else {
+           console.log(flavorList); //Otherwise console log the comments you found
     
-   			res.json(flavorList); 
-  		}
-	})
+           res.json(flavorList); 
+       }
+    })
 });
 
 
