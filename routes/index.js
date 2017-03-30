@@ -71,7 +71,7 @@ if(first){
 	}
 
 	//siblings and skill are a bit different
-	var newSibling = new Sibling({SiblingCount:0,VoteCount:0});
+	var newSibling = new Sibling({SiblingTotal:0,VoteCount:0});
 	newSibling.save(function(err, post) {
 		if(err) return console.error(err);
 		console.log(post);
@@ -141,7 +141,7 @@ router.post('/siblings', function(req, res, next) {
 	  if(err) return console.log(err)
 	});
 
-	Sibling.findOneAndUpdate({}, {$inc:{SiblingCount:req.body[siblings]1}},function(err, result){
+	Sibling.findOneAndUpdate({}, {$inc:{SiblingTotal:req.body["siblings"]}},function(err, result){
 	  if(err) return console.log(err)
 	});
 
