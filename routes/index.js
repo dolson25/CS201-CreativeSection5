@@ -4,20 +4,87 @@ var router = express.Router();
 /* Set up mongoose in order to connect to mongo database */
 var mongoose = require('mongoose'); //Adds mongoose as a usable dependency
 
-mongoose.connect('mongodb://localhost/commentDB22'); //Connects to a mongo database called "commentDB"
+mongoose.connect('mongodb://localhost/surveyDB'); //Connects to a mongo database called "commentDB"
 
-var commentSchema = mongoose.Schema({ //Defines the Schema for this database
-Name: String,
-Comment: String
-});
-
-var Comment = mongoose.model('Comment', commentSchema); //Makes an object from that schema as a model
+var first = true;
 
 var db = mongoose.connection; //Saves the connection as a variable to use
 db.on('error', console.error.bind(console, 'connection error:')); //Checks for connection errors
 db.once('open', function() { //Lets us know when we're connected
 console.log('Connected');
 });
+
+
+if(first){
+	db.collection('flavors').remove();
+	db.collection('sports').remove();
+	db.collection('siblings').remove();
+	db.collection('skills').remove();
+}
+
+var flavorSchema = mongoose.Schema({ //Defines the Schema for this database
+Flavor: String,
+VoteCount: Number
+});
+
+var sportSchema = mongoose.Schema({
+	Sport: String,
+	VoteCount: Number
+});
+
+var siblingSchema = mongoose.Schema({
+	SiblingTotal: Number,
+	VoteCount: Number
+});
+
+var skillSchema = mongoose.Schema({
+	SkillTotal: Number,
+	VoteCount: Number
+});
+
+var Flavor = mongoose.model('Flavor', flavorSchema); //Makes an object from that schema as a model
+var Sport = mongoose.model('Sport', sportSchema);
+var Sibling = mongoose.model('Sibling', siblingSchema);
+var Skill = mongoose.model('Skill', skillSchema);
+
+if(first){
+	var flavors = ["chocolate", "vanilla", "rockyRoad", "strawberry", "other"]
+	
+	for(f of flavors){
+		var newFlavor = new Flavor({Flavor:f,VoteCount:0});
+		console.log(newFlavor);
+		newFlavor.save(function(err, post) {
+  			if(err) return console.error(err);
+  			console.log(post);
+		});
+	}
+
+	var sports = ["basketball", "volleyball", "soccer", "football", "other"]
+	
+	for(s of sports){
+		var newSport = new Sport({Sport:s,VoteCount:0});
+		console.log(newSport);
+		newSport.save(function(err, post) {
+  			if(err) return console.error(err);
+  			console.log(post);
+		});
+	}
+
+	//siblings and skill are a bit different
+	var newSibling = new Sibling({SiblingCount:0,VoteCount:0});
+	newSibling.save(function(err, post) {
+		if(err) return console.error(err);
+		console.log(post);
+	});	
+	
+	var newSkill = new Skill({SkillCount:0,VoteCount:0});
+	newSkill.save(function(err, post) {
+		if(err) return console.error(err);
+		console.log(post);
+	});	
+
+}
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,24 +95,31 @@ router.post('/flavors', function(req, res, next) {
 	console.log("POST flavor route"); //[1]
 	console.log(req.body);
 
-	//new flavar
-	var newcomment = new Comment(req.body); //[3]
-	//console.log(newcomment); //[3]
-	
-	//save flavor
-	newcomment.save(function(err, post) { //[4]
- 		 if (err) return console.error(err);
-  		console.log(post);
-  	res.sendStatus(200);
+	Flavor.findOneAndUpdate({Flavor:req.body["flavor"]}, {$inc:{VoteCount:1}},function(err, result){
+	  if(err) return console.log(err);
 	});
+
+	Flavor.find(function(err, flavorList){
+	  if(err) return console.log(err);
+	  console.log(flavorList);
+	});
+
+  	res.sendStatus(200);
 });
 
 router.post('/sports', function(req, res, next) {
 	console.log("POST sports route");
 	console.log(req.body);
 
-	//new sport
-	//put in db
+
+	Sport.findOneAndUpdate({Sport:req.body["sport"]}, {$inc:{VoteCount:1}},function(err, result){
+	  if(err) return console.log(err);
+	});
+
+	Sport.find(function(err, sportList){
+	  if(err) return console.log(err);
+	  console.log(sportList);
+	});
 
 	res.sendStatus(200);
 });
