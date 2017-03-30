@@ -40,6 +40,7 @@ $(document).ready(function() {
 		contentType: "application/json; charset=utf-8",
 		success: function(data, textStatus) {
 			console.log("success");
+			getResults();
 		}
 	})
 
@@ -88,7 +89,7 @@ $(document).ready(function() {
 		contentType: "application/json; charset=utf-8",
 		success: function(data,textStatus) {
 		    console.log("success");
-		    getResults();
+		 
 		}
 	})
 	
@@ -145,7 +146,7 @@ function getResults(){
         console.log(data[5]);
         var totalVotes = data[5]["VoteCount"];
         sports.forEach(function (s,i) {
-            $("#" + s + "LI").html(s + "  " + Math.round(100 * data[i]["VoteCount"] / totalVotes) + " %");
+            $("#" + s + "SLI").html(s + "  " + Math.round(100 * data[i]["VoteCount"] / totalVotes) + " %");
         });
     });
     $.getJSON('siblings', function(data) {

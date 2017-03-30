@@ -6,7 +6,7 @@ var mongoose = require('mongoose'); //Adds mongoose as a usable dependency
 
 mongoose.connect('mongodb://localhost/surveyDB'); //Connects to a mongo database called "commentDB"
 
-var first = true;
+var first = false;
 
 var db = mongoose.connection; //Saves the connection as a variable to use
 db.on('error', console.error.bind(console, 'connection error:')); //Checks for connection errors
